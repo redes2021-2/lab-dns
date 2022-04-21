@@ -7,29 +7,32 @@ Virtual Box => 6.1.32
 
 ## 1.1 Como subir as VM
 
-'''
+```
 vagrat up
-'''
+```
 
 ## 1.2 Entrar em cada VM
 
 PC1
 
-'''
+```
 vagrant ssh PC1
-'''
+```
 
 PC2
 
-'''
+```
 vagrant ssh PC2
-'''
+```
 
 PC3
 
-'''
+```
 vagrant ssh PC3
-'''
+```
+> Foram feitos arquivos bash para configurar automaticamente as 3 primeiras etapas
+> - PC1.sh
+> - PC2.sh
 
 # Tabela de HOST
 
@@ -115,6 +118,7 @@ sudo systemctl restart bind9
 sudo nano /etc/bind/named.conf.options
 ```
 
+###### Preencher com
 ```
 acl "trusted" {
         192.168.10.10 ;    # pc1 - can be set to localhost
@@ -122,13 +126,16 @@ acl "trusted" {
 };
 
 options {
-
-        . . .
-```
-
-```
-options {
         directory "/var/cache/bind";
+
+        // If there is a firewall between you and nameservers you want
+        // to talk to, you may need to fix the firewall to allow multiple
+        // ports to talk.  See http://www.kb.cert.org/vuls/id/800113
+
+        // If your ISP provided one or more IP addresses for stable 
+        // nameservers, you probably want to use them as forwarders.  
+        // Uncomment the following block, and insert the addresses replacing 
+        // the all-0's placeholder.
 
         recursion yes;                 # enables resursive queries
         allow-recursion { trusted; };  # allows recursive queries from "trusted" clients
@@ -139,8 +146,13 @@ options {
                 8.8.8.8;
                 8.8.4.4;
         };
+        //========================================================================
+        // If BIND logs error messages about the root key being expired,
+        // you will need to update your keys.  See https://www.isc.org/bind-keys
+        //========================================================================
+        dnssec-validation auto;
 
-        . . .
+        listen-on-v6 { any; };
 };
 ```
 
