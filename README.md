@@ -1,5 +1,10 @@
 # lab-dns
-laboratorio de dns
+Laboratorio de dns
+Alunos:
+- Antonio Aldisio - 202028211 
+- Guilherme Braz - 180018159
+
+Professor: Fernando W. Cruz
 # 1. Pré requistos
 
 Vagrant => 2.2.19
@@ -31,8 +36,10 @@ PC3
 vagrant ssh PC3
 ```
 > Foram feitos arquivos bash para configurar automaticamente as 3 primeiras etapas
-> - PC1.sh
-> - PC2.sh
+> - [PC1.sh](https://github.com/redes2021-2/lab-dns/blob/98fb9fc07a53fabbcb5a8a241ab513ae21773018/PC1.sh)
+> - [PC2.sh](https://github.com/redes2021-2/lab-dns/blob/98fb9fc07a53fabbcb5a8a241ab513ae21773018/PC2.sh)
+> - [server.sh](https://github.com/redes2021-2/lab-dns/blob/98fb9fc07a53fabbcb5a8a241ab513ae21773018/server.sh) -ajustar
+> - [client.sh](https://github.com/redes2021-2/lab-dns/blob/98fb9fc07a53fabbcb5a8a241ab513ae21773018/client.sh) -ajustar
 
 # Tabela de HOST
 
@@ -277,4 +284,5 @@ nameserver 192.168.10.2
 options edns0 trust-ad
 ```
 ## 7. Testar
-    
+ping example.com
+ping 10.168.192.10
